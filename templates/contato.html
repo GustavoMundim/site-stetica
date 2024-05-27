@@ -1,0 +1,32 @@
+{% extends 'index.html' %}
+
+{% block titulo %}
+    Contato
+{% endblock %}
+
+{% block body %}
+    <section class="section-contato main-banner" id="top" data-section="section1">
+        <div class="pc-version">
+            <img  class="mobile-image" src="{{ contato_ajuste.fundo_imagem.url }}" alt="">
+        </div>
+        <div class="overlay-contato">
+            <div class="caption">
+                <h6 class="text-1">Entre em contato com</h6>
+                <h2 class="text-2"><em>{{ contato_ajuste.nome }}</em> {{ contato_ajuste.sobrenome }}</h2>
+                <h6 class="text-3">E-mail: <span class="text-4">{{ contato_ajuste.email }}</span></h6>
+                <h3 class="text-5">WhatsApp <a href="{{ contato_ajuste.link_whatsaap }}" class="whats-ico"><i class='text-6 bx bxl-whatsapp'></i></a></h3>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var janela = window.innerWidth;
+            if (janela <= 780) {
+                document.querySelector('header').style.background = '#fff';
+            } else {
+                document.querySelector('header').style.background = 'transparent';
+            }
+        });
+    </script>
+{% endblock %}

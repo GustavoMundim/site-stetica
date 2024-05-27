@@ -1,0 +1,16 @@
+
+
+{% load static %}
+
+<header>
+    <a href="{% url 'site-estetica:homepage' %}" class="logo"><img src="{% static 'images/test_images/ticoteco.png' %}" alt=""></a>
+    <i class="bx bx-menu" id="menu-icon"></i>
+    <nav class="navigation navegation-pages">
+        <a href="{% url 'site-estetica:homepage' %}" class="{% if active_page == 'homepage' %} active {% endif %}">Inicio<span></span></a>
+        <a href="{% url 'site-estetica:agendamento'  %}" class="{% if active_page == 'agendamento' %} active {% endif %}">Agendar Serviço<span></span></a>
+       
+        <a href="{% url 'site-estetica:contato' %}" class="{% if active_page == 'contato' %} active {% endif %}">Contato<span></span></a>
+    </nav>
+</header>
+
+

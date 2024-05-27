@@ -1,0 +1,218 @@
+
+
+
+.sec-estetica{
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+
+
+
+.card-perfil {
+    width: 95%;
+    position: relative;
+    max-width: 800px;
+    margin: auto;
+    background: #fff;
+    box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
+    padding: 25px;
+    border-radius: 25px;
+    height: 400px;
+    visibility: hidden;
+}
+
+.card-perfil h2 {
+    margin: 0;
+    padding: 0 1rem;
+}
+
+.card-perfil .tag {
+    padding: 1rem;
+    text-align: right;
+    color: #429bf5;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.card-perfil .descricao {
+    padding: 0.5rem 1rem;
+    font-size: 16px;
+    color: #4e4a67;
+  }
+
+.title-total h2{
+  color: black;
+  font-weight: 700
+}
+  
+
+
+  
+  .container-text {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+  }
+  
+  .title-total {
+    padding: 2.5em 1.5em 1.5em 1.5em;
+  }
+  
+
+  /* TEXTOS  */
+
+
+
+.profile-image{
+    width: 300px;
+    height: 90%;
+    box-shadow: 1px 1px 5px 2px black;
+    border-radius: 20px;
+    transform: translateX(2px);
+    overflow: hidden;
+    background-size:  cover;
+    background-position: bottom center;
+    transform: translateX(-80px);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.contato-icon a{
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 2rem;
+    height: 2rem;
+    border: .2rem solid green;
+    border-radius: 50%;
+    font-size: 2rem;
+    color: black;
+    margin: 3rem 1.15rem 3rem 0;
+}
+
+
+.wrapper_profile {
+  display: none
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 2rem 9%;
+  background: #323946
+}
+
+.footer-text p {
+  color: #fff
+}
+
+
+
+
+
+
+
+
+@media (max-width: 768px) {
+
+  .card-perfil {
+    display: none
+  }
+
+  .wrapper_profile .box-area {
+    display: flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    text-align: center;
+    color: #fff;  
+  }
+
+  .box-area .box {
+    height: 400px;
+    background-color: #fff;
+    backdrop-filter: blur(10px);
+    margin: 10px;
+    flex: 0 1 300px;
+    border-radius: 20px;
+  }
+
+  .img-box {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 8% auto;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.5);
+  }
+
+  .img-box img{
+    width: 100%;
+    height: 100%;
+  }
+  .box h2 {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 1.2rem;
+    margin: 4px;
+    color: #1c1c1c;
+    margin-bottom: 1em;
+  }
+
+  .wrapper_profile{
+    display: block
+  }
+
+  .box p {
+    font-size: 0.8em;
+    color: #1c1c1c;
+    padding-right: 5px;
+  }
+  .tags {
+    margin-top: 40px;
+
+  }
+  .tags i {
+    padding: .60em .75em;
+    border-radius: 1em;
+    font-size: .60rem;
+    margin: 3 8px;
+    border-width: 2px;
+    background: #56CCF2;
+    margin-top: .40em;
+    margin-left: .130em;
+    font-weight: 700;
+    background: linear-gradient(to bottom, #0f9, #56CCF2);
+    display: inline-block;
+
+  }
+
+  .wrapper_profile {
+    overflow: hidden;
+  }
+
+
+}

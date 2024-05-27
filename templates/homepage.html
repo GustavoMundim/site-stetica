@@ -1,0 +1,106 @@
+{% extends 'index.html' %}
+
+{% load static %}
+
+{% block titulo %}
+    Estetica
+{% endblock %}
+
+
+{% block body %}
+<section class="sec-estetica" id="home">
+    <div class="card-perfil">
+        <div class="profile">
+        </div>
+        <div class="container-text">
+          <div class="profile-image">
+            <img class="" src="{{ perfil.first.perfil_imagem.url }}">
+          </div>
+          <div class="title-total">   
+            <div class="tag">Estetitista Facial</div>
+            <h2>{{ perfil.first.nome_perfil }}</h2>
+        
+        <div class="descricao">{{ perfil.first.descricao|slice:180 }}...</div>
+    </div>
+      </div>
+    </div>
+      <div class="wrapper_profile">
+        <div class="box-area">
+          <div class="box">
+            <div class="img-box"><img src="{{ perfil.first.perfil_imagem.url }}" alt=""></div>
+            <h2>{{ perfil.first.nome_perfil }}</h2>
+            <p>{{ perfil.first.descricao|slice:80 }}...</p>
+            <p class="tags">
+              <i class=>Estetitista Facial</i>
+              <i class=>Massoterapeuta</i>
+            </p>
+          </div>
+        </div>
+      
+</section>
+
+<section class="body-services">
+  <h2 class="heading">Nossos<span class="span-our-service"> Serviços</span></h2>
+  <div class="wrapper">
+      <ul class="carousel">
+        {% for servico in object_list %}
+        <li class="card">
+          <div class="img"><img src="{{ servico.imagem.url }}" alt="img" draggable="false"></div>
+          <h2>{{servico.servico}}</h2>
+          <span>R$ {{servico.preco}}</span>
+          <a href="{% url 'site-estetica:agendamento-selecionado'  servico.id %}" class="agendar-servico">Agendar</a>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+</section>
+
+<div class="about_section position-relative">
+      <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="slider_item-box">
+              <div class="slider_item-container">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-md-5">
+                      <div class="about__image_box">
+                        <div>
+                          <img src="{{ about.first.render_profile.url }}" alt="" class="" />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-7">
+                      <div class="slider_item-detail">
+                        <div>
+                          <h1 class="sobre-mim">
+                            Sobre <span>Mim</span>
+                          </h1>
+                          <h1 class="about__profile">{{ perfil.first.nome_perfil }}</h1>
+                          <p class="about__text">
+                            {{ about.first.descricao }}
+                          </p>
+                          <div class="d-flex">
+                            <i>Estetitista Facial</i>
+                            <i>Massoterapeuta</i>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+{% endblock %}

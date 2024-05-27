@@ -1,0 +1,78 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block body %}
+<div class="container-agendamento container-fluid">
+    <div class="row">
+        <div class="col-md-5 bg-agendamento">
+            <div class="header-agendamento">
+            </div>
+            <div class="body-form">
+                <h2 class="label-sec">Agende já sua sessão</h2>
+                <hr>
+                <form action="" method="POST">{% csrf_token %}
+                    <span class="labels">Serviço</span>
+                    <select name="servico" class="form-control">
+                        {% if servico.servico == '' %}
+                            <option disabled value="">Selecione um serviço</option>
+                        {% else %}
+                            <option value="{{ escolhido.servico }} R$ {{ escolhido.preco }}" name="servico">Você escolheu: {{ escolhido.servico }} - R$ {{ escolhido.preco }}</option>
+                        {% endif %}
+                        {% for servico in consultar %}
+                            <option value="{{ servico.servico }} R$ {{servico.preco}}">{{ servico.servico }} - R$ {{ servico.preco }}</option>
+                        {% endfor %}
+                    </select>
+                    <br>
+                    <div class="row">
+                        <div class="col-md">
+                            <span class="labels">Primeiro nome</span>
+                            <input type="text" class="form-control" placeholder="Seu nome" name="nome">
+                        </div>
+                        <div class="col-md">
+                            <span class="labels">Sobrenome</span>
+                            <input type="text" class="form-control" placeholder="Sobrenome" name="sobrenome">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md">
+                            <span class="labels">Horário:</span>
+                            <select name="horario-marcado" class="form-control">
+                                <option value="">Consultar horário disponível</option>
+                                {% for horario_comercial in horarios %}
+                                    {% if horario_comercial in horarios_ocupado %}
+                                    <option disabled style="color:red" value="{{ horario_comercial }}">{{ horario_comercial }}</option>
+                                    {% else %}
+                                    <option style="color:green " value="{{ horario_comercial }}">{{ horario_comercial }}</option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <input type="submit" value="Agendar" class="botao-agendar-servico">
+                    {% if status.status == '1' %}
+                    <div class="status_alert alert alert-secondary" role="alert">
+                        Sua sessão foi marcada.
+                      </div>
+
+                    {% elif status.status == '0' %}
+                    <div class="status_alert alert alert-warning" role="alert">
+                        Sessão remarcada!
+                      </div>
+                    {% elif status.status == '' %}
+                        <div>
+
+                        </div>
+                    {% elif status.status == '2' %}
+                    <div class="status_alert alert alert-warning" role="alert">
+                        Por favor preencha todos os campos!
+                      </div>
+                    {% endif %}
+                </form>
+            </div>
+        </div>
+        <div class="col-md-7 min-h-screen bg-gray-200 bg-opacity-50 bg-blend-overlay flex justify-center items-center bg-no-repeat foto-background" style="background-image: url('{{ foto_fundo.first.imagem.url }}'); background-repeat: no-repeat; background-size: cover;">
+        </div>
+    </div>
+</div>
+{% endblock %}

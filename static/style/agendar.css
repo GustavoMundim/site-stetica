@@ -1,0 +1,80 @@
+.bg-agendamento{
+    background-color: #849cd4;
+    color: white;
+    height: 100vh;
+}
+
+.header-agendamento {
+    border-bottom: 1px solid white;
+    padding: 20px;
+}
+
+.body-form {
+    padding: 20px;
+    visibility: hidden;
+}
+
+
+.status_alert {
+    margin-top: 30px
+}
+
+.texto-servico {
+    color: #0000
+}
+
+.botao-agendar-servico{
+    background-color: #3D7B80;
+    border: none;
+    box-shadow: 2px 2px 5px 1px black;
+    color: white;
+    font-size: 20px;
+    padding: 5px 20px 5px 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+
+}
+
+.botao-agendar-servico:hover {
+    box-shadow: 1px 0px 5px white
+}
+
+.labels {
+    color: #fff;
+    font-weight: 600
+}
+
+
+
+
+
+.label-sec {
+    margin: 8px;
+    font-weight: 600;
+    font-size: 2rem;
+}
+
+
+.back-drop {
+    display: block
+}
+
+.adjust_mobile {
+    display: none;
+}
+
+.pc_version {
+    display: block
+}
+
+@media (max-width: 768px) {
+
+.label-sec {
+    font-size: 1.1rem
+}
+.pc_version {
+    display: none
+}
+}
+
+
