@@ -14,9 +14,7 @@ TOKEN_CSRF = os.getenv('TOKEN_CSRF')
 
 if TOKEN_CSRF:
     SECRET_KEY = TOKEN_CSRF
-    CSRF_TRUSTED_ORIGINS = [
-    'https://siteestetica-production.up.railway.app'
-]
+    CSRF_TRUSTED_ORIGINS = ['https://siteestetica-production.up.railway.app']
 else:
     SECRET_KEY = 'django-insecure-kplm+t1j6v-d%n^i(%6up&39+f2-e!0ai9oc$2q&&y#qf+i4zl'
 
