@@ -15,10 +15,10 @@ TOKEN_CSRF = os.getenv('TOKEN_CSRF')
 if TOKEN_CSRF:
     SECRET_KEY = TOKEN_CSRF
     CSRF_TRUSTED_ORIGINS = [
-    'https://siteprojeto-production.up.railway.app'
+    'https://siteestetica-production.up.railway.app'
 ]
-
-SECRET_KEY = 'django-insecure-kplm+t1j6v-d%n^i(%6up&39+f2-e!0ai9oc$2q&&y#qf+i4zl'
+else:
+    SECRET_KEY = 'django-insecure-kplm+t1j6v-d%n^i(%6up&39+f2-e!0ai9oc$2q&&y#qf+i4zl'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -52,7 +52,7 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    'siteestetica-production.up.railway.app'
+    'https://siteestetica-production.up.railway.app'
 ]
 
 ROOT_URLCONF = 'SiteEstetica.urls'
