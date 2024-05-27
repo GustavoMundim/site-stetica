@@ -9,7 +9,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
+
+TOKEN_CSRF = os.getenv('TOKEN_CSRF')
+
+if TOKEN_CSRF:
+    SECRET_KEY = TOKEN_CSRF
+    CSRF_TRUSTED_ORIGINS = [
+    'https://siteprojeto-production.up.railway.app'
+]
+
 SECRET_KEY = 'django-insecure-kplm+t1j6v-d%n^i(%6up&39+f2-e!0ai9oc$2q&&y#qf+i4zl'
 
 # SECURITY WARNING: don't run with debug turned on in production!
