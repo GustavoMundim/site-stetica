@@ -37,19 +37,10 @@
 <script src="https://unpkg.com/scrollreveal"></script>
 <script src="https://cdn.tailwindcss.com"></script>
 
+
+
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Coloque aqui o código que você quer executar quando a página terminar de carregar
-        const fundo_pc = document.querySelector(".mobile-version");
-        const telaMobile = window.screen.width;
-
-        if (telaMobile < 600) {
-            fundo_pc.classList.remove('min-h-screen');
-        } else {
-            fundo_pc.classList.add('min-h-screen');
-        }
-
-        window.sr = ScrollReveal( {reset: true, distance: '80px', duration: 2000, delay: 200} );
+    window.sr = ScrollReveal( {reset: true, distance: '80px', duration: 2000, delay: 200} );
         sr.reveal(".heading", {origin: 'right', distance: '1900px'});
         sr.reveal('.card-services', {origin: 'bottom'});
         sr.reveal('.body-form', {origin: 'bottom'});
@@ -68,48 +59,116 @@
         sr.reveal('.about__text', {origin: 'right', delay: 1300, distance: '1900px'});
         sr.reveal('.about__image_box', {origin: 'left', delay: 200, distance:  '1900px'});
         sr.reveal('.d-flex', {origin: 'right', delay: 1500, distance: '1900px'});
-
-        let menuMobile = document.querySelector('#menu-icon');
-        let navbar = document.querySelector('.navigation');
-
-        menuMobile.onclick = () => {
-            menuMobile.classList.toggle('bx-x');
-            navbar.classList.toggle('active');
-        };
-
-        const barra_navegacao = document.querySelector('header');
-        let ultimoScroll = 0;
-
-        window.addEventListener('scroll', function() {
-            const scrollAtual = window.scrollY;
-
-            if (scrollAtual > ultimoScroll) {
-                barra_navegacao.style.transform = 'translateY(-100%)';
-            } else {
-                barra_navegacao.style.transform = 'translateY(0)';
-            }
-
-            ultimoScroll = scrollAtual <= 0 ? 0 : scrollAtual;
-        });
-
-        let sections = document.querySelectorAll('section');
-        let navLinks = document.querySelectorAll('header nav a');
-
-        window.onscroll = () => { 
-            sections.forEach(sec => {
-                let top = window.scrollY;
-                let offset = sec.offsetTop - 150;
-                let height = sec.offsetHeight;
-                let id = sec.getAttribute('id');
-                
-                if (top >= offset && top < offset + height) {
-                    navLinks.forEach(links => {
-                        links.classList.remove('active');
-                        document.querySelector('header nav  a[href*=' + id +  ']' ).classList.add('active');
-                    });
-                }
-            });
-        };
-    });
 </script>
+
+
+<script>
+    const wrapper = document.querySelector(".wrapper");
+const carousel = document.querySelector(".carousel");
+const firstCardWidth = carousel.querySelector(".card").offsetWidth;
+const arrowBtns = document.querySelectorAll(".wrapper i");
+const carouselChildrens = [...carousel.children];
+
+let isDragging = false, isAutoPlay = true, startX, startScrollLeft, timeoutId;
+
+
+let cardPerView = Math.round(carousel.offsetWidth / firstCardWidth);
+
+
+carouselChildrens.slice(-cardPerView).reverse().forEach(card => {
+    carousel.insertAdjacentHTML("afterbegin", card.outerHTML);
+});
+
+
+carouselChildrens.slice(0, cardPerView).forEach(card => {
+    carousel.insertAdjacentHTML("beforeend", card.outerHTML);
+});
+
+
+carousel.classList.add("no-transition");
+carousel.scrollLeft = carousel.offsetWidth;
+carousel.classList.remove("no-transition");
+
+
+arrowBtns.forEach(btn => {
+    btn.addEventListener("click", () => {
+        carousel.scrollLeft += btn.id == "left" ? -firstCardWidth : firstCardWidth;
+    });
+});
+
+const dragStart = (e) => {
+    isDragging = true;
+    carousel.classList.add("dragging");
+
+
+    startX = e.pageX;
+    startScrollLeft = carousel.scrollLeft;
+}
+
+const dragging = (e) => {
+    if(!isDragging) return; 
+    carousel.scrollLeft = startScrollLeft - (e.pageX - startX);
+}
+
+const dragStop = () => {
+    isDragging = false;
+    carousel.classList.remove("dragging");
+}
+
+const infiniteScroll = () => {
+
+    if(carousel.scrollLeft === 0) {
+        carousel.classList.add("no-transition");
+        carousel.scrollLeft = carousel.scrollWidth - (2 * carousel.offsetWidth);
+        carousel.classList.remove("no-transition");
+    }
+
+    else if(Math.ceil(carousel.scrollLeft) === carousel.scrollWidth - carousel.offsetWidth) {
+        carousel.classList.add("no-transition");
+        carousel.scrollLeft = carousel.offsetWidth;
+        carousel.classList.remove("no-transition");
+    }
+
+
+    clearTimeout(timeoutId);
+    if(!wrapper.matches(":hover")) autoPlay();
+}
+
+carousel.addEventListener("mousedown", dragStart);
+carousel.addEventListener("mousemove", dragging);
+document.addEventListener("mouseup", dragStop);
+carousel.addEventListener("scroll", infiniteScroll);
+wrapper.addEventListener("mouseenter", () => clearTimeout(timeoutId));
+wrapper.addEventListener("mouseleave", autoPlay);
+</script>
+
+
+<script>
+    let menuMobile = document.querySelector('#menu-icon')
+let navbar = document.querySelector('.navigation')
+
+menuMobile.onclick = () => {
+    menuMobile.classList.toggle('bx-x');
+    navbar.classList.toggle('active');
+}
+
+
+
+const barra_navegacao = document.querySelector('header');
+let ultimoScroll = 0;
+
+window.addEventListener('scroll', function() {
+    const scrollAtual = window.scrollY;
+
+    if (scrollAtual > ultimoScroll) {
+        barra_navegacao.style.transform = 'translateY(-100%)';
+    } else {
+        barra_navegacao.style.transform = 'translateY(0)';
+    }
+
+    ultimoScroll = scrollAtual <= 0 ? 0 : scrollAtual;
+});
+
+</script>
+
 </html>
